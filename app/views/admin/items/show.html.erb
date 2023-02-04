@@ -1,0 +1,22 @@
+<h4>結びめし詳細</h4>
+
+<table>
+<tbody>
+  <tr>
+    <!--画像-->
+   <th><%= image_tag item.get_image(100,100) %></th>
+
+    <!--名前-->
+   <th><%= @item.name %></th>
+
+    <!--商品詳細-->
+   <th><%= @item.introduction %></th>
+
+    <!--ジャンル-->
+   <th><%= @item.gener_id %></th>
+
+   <!--いいねの数-->
+    <th><%= @item.favorites.count %></th>
+  </tr>
+</tbody>
+</table>
