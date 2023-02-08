@@ -10,7 +10,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 # 顧客用
-# root to: 'public/homes#top'
+root to: 'public/homes#top'
 scope module: :public do
   resources :items
   resources :customers
@@ -25,5 +25,9 @@ namespace :admin do
      resources :customers
      resources :reviews, only: [:destroy]
    end
+
+resources :records do
+   resources :comments, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

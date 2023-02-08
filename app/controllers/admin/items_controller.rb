@@ -7,4 +7,8 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   
+  private
+  def items_params
+    params.require(:item).permit(:image, :name, :introduction, :customer_id, :is_active)
+  end
 end

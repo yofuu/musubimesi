@@ -1,0 +1,12 @@
+<!--名前-->
+<h4><%= @customer.name %></h4>
+<!--投稿したもの-->
+<%= @customer.item %>
+<!--メールアドレス-->
+<%= @customer.email %>
+<!--ステータス-->
+<% if @customer.is_deleted==true %>
+        退会
+      <% else %>
+        有効
+      <% end %>
