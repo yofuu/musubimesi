@@ -1,0 +1,24 @@
+<h4>結びめし一覧</h4>
+
+<table>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <!--商品画像-->
+        <td><%= link_to admin_item_path(item.id) do %>
+          <%= image_tag item.get_image(100,100) %>
+          <% end %>
+        </td>
+        <!--商品名-->
+        <td><%= link_to admin_item_path(item.id) do %>
+         <%= item.name %>
+         <% end %>
+        </td>
+        <!--投稿者-->
+        <td><%= item.customer.name %></td>
+        <!--いいねの数-->
+        <td><%= item.favorites.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
