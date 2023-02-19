@@ -13,9 +13,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 root to: 'public/homes#top'
 scope module: :public do
   resources :items
-  resources :customers
+  get 'customers/mypage''customers#mypage'
   get 'customers/unsubscribe'=>'customers#unsubscribe'
   patch 'customers/withdraw'=>'customers#withdraw'
+  resources :customers
 end
 
 # 管理者用

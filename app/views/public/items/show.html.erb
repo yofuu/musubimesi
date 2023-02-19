@@ -13,7 +13,7 @@
    <th><%= @item.introduction %></th>
 
     <!--ジャンル-->
-   <th><%= @item.gener_name %></th>
+   <th><%= @item.genres.name %></th>
 
    <!--いいねの数-->
     <th><%= @item.favorites.count %></th>
@@ -21,4 +21,4 @@
 </tbody>
 </table>
 <!--コメント-->
-<%= @item.comments.body %>
+<%#= @item.comments.body %>

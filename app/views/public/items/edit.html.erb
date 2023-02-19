@@ -1,11 +1,10 @@
-<h4>結びめし登録</h4>
+<h4>編集</h4>
 
-<%= form_with model: @item, url:items_path, method: :post do |f| %>
-
+<%= form_with model: @item, url:item_path(@item.id), method: :patch do |f| %>
 <table>
- <tbody>
+<tbody>
  <tr>
-  <td>商品画像</td>
+　<td>商品画像</td>
   <td><%= f.file_field :image %></td>
  </tr>
 
@@ -23,8 +22,8 @@
   <td>ジャンル</td>
   <td><%= f.text_field :gener_name %></td>
  </tr>
-
- </tbody>
+</tbody>
 </table>
- <%= f.submit '新規登録' %>
+
+ <%= f.submit '変更を保存する' %>
 <% end %>

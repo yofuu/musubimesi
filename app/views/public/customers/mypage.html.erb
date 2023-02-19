@@ -1,0 +1,36 @@
+<h4>マイページ</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>名前</td>
+      <td><%= @customer.name %></td>
+    </tr>
+
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <% @customer.each do |customer| %>
+      <tr>
+        <td><%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(100,100) %>
+          <% end %>
+        </td>
+        <!--投稿した名前-->
+        <td><%= link_to item_path(item.id) do %>
+        <%= customer.item.name %>
+        <% end %>
+        </td>
+        <!--いいねの数-->
+        <td><%= item.favorites.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
