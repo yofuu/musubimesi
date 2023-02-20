@@ -12,8 +12,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 # 顧客用
 root to: 'public/homes#top'
 scope module: :public do
-  resources :items
-  get 'customers/mypage''customers#mypage'
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+    resources :comments, only: :create
+    collection do
+      get 'search'
+    end
+    resources :comments, only: [:create]
+  end
+  get 'customers/mypage'=>'customers#mypage'
   get 'customers/unsubscribe'=>'customers#unsubscribe'
   patch 'customers/withdraw'=>'customers#withdraw'
   resources :customers

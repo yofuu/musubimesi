@@ -14,7 +14,7 @@
     <header>
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container">
-              <%= link_to "LOGO", root_path %>
+              <%= link_to "結びめし", root_path %>
              <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
               <% if customer_signed_in? %>
                <ul class="navbar-nav ml-auto">
@@ -24,10 +24,6 @@
                  </li>
                  <li>
                   <%= link_to "商品一覧", items_path %>
-
-                 </li>
-                 <li>
-                  <%= link_to "カート", cart_items_path %>
 
                  </li>
                  <li>
@@ -45,20 +41,12 @@
 
                  </li>
                  <li>
-                  <%= link_to "注文履歴一覧", admin_root_path %>
-
-                 </li>
-                 <li>
                   <%= link_to "ログアウト", destroy_admin_session_path,method: :delete %>
 
                  </li>
                </ul>
               <% else %>
                <ul class="navbar-nav ml-auto">
-                 <li>
-                 <%= link_to "About", about_path %>
-
-                 </li>
                   <li>
                   <%= link_to "商品一覧", items_path %>
 
@@ -76,11 +64,13 @@
              </div>
           </div>
        </nav>
+      <%= form_with url: search_items_path, local: true, method: :get do |form| %>
+        <%= form.text_field :keyword %>
+         <%= form.submit "検索" %>
+      <% end %>
 
     </header>
     <%= flash[:notice] %>
-
-    <%= yield %>
 
     <%= yield %>
   </body>

@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
   has_one_attached :image
-  has_many :favorites
+  has_many :favorites, dependent: :destroy #destroyで商品消えたら消える
   belongs_to :customer
   has_many :genres
+  has_many :comments, dependent: :destroy
 
   def get_image(width,height)
     unless image.attached?
@@ -10,5 +11,9 @@ class Item < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
       image.variant(resize_to_limit: [width,height]).processed
+  end
+
+  def favorited?(customer)
+   favorites.where(customer_id: customer.id).exists?
   end
 end

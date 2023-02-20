@@ -20,5 +20,42 @@
   </tr>
 </tbody>
 </table>
+<% if @item.favorite?(current_customer) %>
+    <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+    <%= link_to item_favorite_path(@item.id), method: :delete do %>
+        <span style="color:red;">❤︎</span>
+    <% end %>
+<% else %>
+    <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+    <%= link_to item_favorites_path(@item.id), method: :post do %>
+        <span>❤︎</span>
+    <% end %>
+<% end %>
 <!--コメント-->
-<%#= @item.comments.body %>
+<!--<h2>投稿する</h2>-->
+
+<!--<#%= form_with model: @item do |f| %>-->
+<!--  <#%= f.text_area :post_content, placeholder: '本文' %>-->
+<!--    <#%= f.submit 'コメントする' %>-->
+
+
+<!--<h2>投稿一覧</2>-->
+
+<!--<#% @items.each do |item| %>-->
+<!--  <#%= link_to item.body, item %>-->
+
+<!--<#%= link_to 'ホーム', root_path %>-->
+
+<h2>コメントをする</h2>
+
+<%= form_with(model:[@item, @comment], method: :post) do |f| %>
+  <%= f.text_area :comment_content %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.submit 'コメントする' %>
+
+<h2>コメント一覧</h2>
+
+<% @comments.each do |comment| %>
+  <%= comment.body %>  #コメントの内容が表示される
+
+<%= link_to 'ホーム', root_path %>
