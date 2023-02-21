@@ -13,7 +13,7 @@ class Item < ApplicationRecord
       image.variant(resize_to_limit: [width,height]).processed
   end
 
-  def favorited?(customer)
+  def favorite?(customer)
    favorites.where(customer_id: customer.id).exists?
   end
 end

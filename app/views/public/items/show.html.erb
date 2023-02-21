@@ -20,6 +20,7 @@
   </tr>
 </tbody>
 </table>
+<% if  current_customer.present? %>
 <% if @item.favorite?(current_customer) %>
     <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
     <%= link_to item_favorite_path(@item.id), method: :delete do %>
@@ -50,12 +51,14 @@
 
 <%= form_with(model:[@item, @comment], method: :post) do |f| %>
   <%= f.text_area :comment_content %>
-  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.submit 'コメントする' %>
-
+<% end %>
+<% end %>
 <h2>コメント一覧</h2>
 
 <% @comments.each do |comment| %>
   <%= comment.body %>  #コメントの内容が表示される
+<% end %>
 
 <%= link_to 'ホーム', root_path %>

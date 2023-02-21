@@ -8,7 +8,9 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @comments = @item.comments  #投稿詳細に関連付けてあるコメントを全取得
-    @comment = current_customer.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+    if current_customer.present?
+      @comment = current_customer.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+    end
   end
 
   def new
@@ -29,7 +31,7 @@ class Public::ItemsController < ApplicationController
       @items = Item.all
       render :index
     end
-    
+
     if @item.save
       redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
     else
