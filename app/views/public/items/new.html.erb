@@ -21,7 +21,7 @@
 
  <tr>
   <td>ジャンル</td>
-  <td><%= f.text_field :gener_name %></td>
+  <td><%= f.collection_select(:genre_id, @genres, :id, :name )  %></td>
  </tr>
 
  </tbody>

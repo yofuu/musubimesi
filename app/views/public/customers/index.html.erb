@@ -1,3 +1,4 @@
+<div class="mx-auto" style="width: 300px;">
 <h4>顧客一覧</h4>
 
 <table>
@@ -5,10 +6,17 @@
     <% @customers.each do |customer| %>
       <tr>
         <!--顧客名-->
-        <td><%= link_to customer_path(customer.id) do %>
-        <%= customer.name %>
+        <% if customer.id == current_customer.id %>
+         <td><%= link_to customers_mypage_path do %>
+              <%= customer.name %>
+             <% end %>
+         </td>
+        <% else %>
+         <td><%= link_to customer_path(customer.id) do %>
+              <%= customer.name %>
+             <% end %>
+         </td>
         <% end %>
-        </td>
         <!--メールアドレス-->
         <td><%= customer.email %></td>
         <!--登録日時-->
@@ -17,3 +25,4 @@
     <% end %>
   </tbody>
 </table>
+</div>

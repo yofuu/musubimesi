@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_many :favorites, dependent: :destroy #destroyで商品消えたら消える
   belongs_to :customer
-  has_many :genres
+  belongs_to :genres
   has_many :comments, dependent: :destroy
 
   def get_image(width,height)

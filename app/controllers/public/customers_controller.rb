@@ -13,6 +13,7 @@ class Public::CustomersController < ApplicationController
 
   def mypage
     @customer = current_customer
+    @items = Item.all
   end
 
   def update

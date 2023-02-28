@@ -15,6 +15,7 @@ class Public::ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @genres = Genre.all
   end
 
   def edit
@@ -50,7 +51,8 @@ class Public::ItemsController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @items = Item.where('caption LIKE ?', "%#{params[:keyword]}%")
+      # @genres = Genre.where('name LIKE ?', "%#{params[:keyword]}%")
+      @items = Item.joins(:genres).where('genres.name LIKE ?', "%#{params[:keyword]}%")
       @keyword = params[:keyword]
     else
       @items = Item.all
@@ -59,6 +61,6 @@ class Public::ItemsController < ApplicationController
 
   private
   def items_params
-    params.require(:item).permit(:image, :name, :introduction, :is_active)
+    params.require(:item).permit(:image, :name, :introduction, :is_active, :genre_id)
   end
 end

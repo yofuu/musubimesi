@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 2023_01_28_145836) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "item_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -93,6 +92,7 @@ ActiveRecord::Schema.define(version: 2023_01_28_145836) do
     t.text "introduction"
     t.boolean "is_active", default: true
     t.integer "customer_id"
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -29,7 +29,7 @@ end
 # 管理者用
 namespace :admin do
      resources :items
-
+     resources :genres, only: [:new, :create]
      resources :customers
      resources :reviews, only: [:destroy]
    end
