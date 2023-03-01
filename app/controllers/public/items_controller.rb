@@ -1,6 +1,6 @@
 class Public::ItemsController < ApplicationController
   #ユーザーのログイン状態を確かめる。index,showはログインしてなくても閲覧可能にしてます。
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_customer!, only: [:create]
   def index
     @items = Item.all
   end
@@ -24,20 +24,22 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(items_params)
-    @item.customer_id = current_customer.id
+    # @item.customer_id = current_customer.id
+    @item.save!
+    redirect_to action: 'index'
 
-    if @item.save
-      redirect_to item_path(@item.id), notice:"Item was successfully updated."
-    else
-      @items = Item.all
-      render :index
-    end
+    # if @item.save
+    #   redirect_to item_path(@item.id), notice:"新規投稿しました"
+    # else
+    #   @items = Item.all
+    #   render :index
+    # end
 
-    if @item.save
-      redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-    else
-      redirect_back(fallback_location: root_path)  #同上
-    end
+    # if @item.save
+    #   redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
+    # else
+    #   redirect_back(fallback_location: root_path)  #同上
+    # end
   end
 
   def updated
@@ -57,6 +59,13 @@ class Public::ItemsController < ApplicationController
     else
       @items = Item.all
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    current_customer.comments.find(params[:id]).destroy!
+    flash[:notice] = 'コメントを削除しました'
+    redirect_to item_path(@item)
   end
 
   private

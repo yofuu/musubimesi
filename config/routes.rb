@@ -18,7 +18,7 @@ scope module: :public do
     collection do
       get 'search'
     end
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
   get 'customers/mypage'=>'customers#mypage'
   get 'customers/unsubscribe'=>'customers#unsubscribe'
@@ -32,6 +32,7 @@ namespace :admin do
      resources :genres, only: [:new, :create]
      resources :customers
      resources :reviews, only: [:destroy]
+     resources :comments, only: [:create, :destroy]
    end
 
 resources :records do

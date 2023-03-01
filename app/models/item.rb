@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   has_one_attached :image
   has_many :favorites, dependent: :destroy #destroyで商品消えたら消える
-  belongs_to :customer
-  belongs_to :genres
+  belongs_to :customer, optional: true
+  belongs_to :genre, optional: true
   has_many :comments, dependent: :destroy
 
   def get_image(width,height)
