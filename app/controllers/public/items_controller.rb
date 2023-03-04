@@ -24,6 +24,10 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(items_params)
+    @item.customer_id = current_customer.id
+    
+    byebug
+    
     # @item.customer_id = current_customer.id
     @item.save!
     redirect_to action: 'index'

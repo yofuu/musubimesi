@@ -1,6 +1,6 @@
 <div class="mx-auto" style="width: 400px;">
 <h2>ログイン</h2>
-<h4>
+<div style="font-size:x-large">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="my-5">
   <div class="field">
@@ -14,12 +14,11 @@
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 </div>
-</h4>
 
   <div class="actions">
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
-
+</div>
 <%= render "admin/shared/links" %>
 </div>
