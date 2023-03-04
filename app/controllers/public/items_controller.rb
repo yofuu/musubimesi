@@ -3,10 +3,12 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
   def index
     @items = Item.all
+    # @customer = Customer.find(params[:id])
   end
 
   def show
     @item = Item.find(params[:id])
+    @items = Item.where(customer_id: current_customer.id)
     @comments = @item.comments  #投稿詳細に関連付けてあるコメントを全取得
     if current_customer.present?
       @comment = current_customer.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
@@ -20,15 +22,12 @@ class Public::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 
   def create
     @item = Item.new(items_params)
     @item.customer_id = current_customer.id
-    
-    byebug
-    
-    # @item.customer_id = current_customer.id
     @item.save!
     redirect_to action: 'index'
 
@@ -46,10 +45,10 @@ class Public::ItemsController < ApplicationController
     # end
   end
 
-  def updated
+  def update
     @item = Item.find(params[:id])
     if @item.update(items_params)
-    redirect_to item_path(@item), notice:"Item was successfully updated."
+    redirect_to item_path(@item), notice:"投稿を編集しました"
     else
     render:edit
     end
@@ -60,6 +59,9 @@ class Public::ItemsController < ApplicationController
       # @genres = Genre.where('name LIKE ?', "%#{params[:keyword]}%")
       @items = Item.joins(:genres).where('genres.name LIKE ?', "%#{params[:keyword]}%")
       @keyword = params[:keyword]
+    elsif params[:genre_id].present?
+      @items = Item.where(genre_id: params[:genre_id])
+      @keyword = Genre.find(params[:genre_id]).name
     else
       @items = Item.all
     end
@@ -67,9 +69,9 @@ class Public::ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    current_customer.comments.find(params[:id]).destroy!
-    flash[:notice] = 'コメントを削除しました'
-    redirect_to item_path(@item)
+    current_customer.items.find(params[:id]).destroy!
+    flash[:notice] = '投稿を削除しました'
+    redirect_to items_path
   end
 
   private

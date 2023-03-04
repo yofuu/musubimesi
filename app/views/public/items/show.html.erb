@@ -1,23 +1,36 @@
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" style="width: 400px;">
 <h4>結びめし詳細</h4>
 
 <table>
 <tbody>
   <tr>
     <!--画像-->
-   <th><%= image_tag @item.get_image(100,100) %></th>
+   <th><%= image_tag @item.get_image(200,200) %></th>
 
     <!--名前-->
    <th><%= @item.name %></th>
 
+   <!--投稿者-->
+    <% if @item.customer.id == current_customer.id %>
+         <td><%= link_to customers_mypage_path do %>
+              <%= @item.customer.name %>
+             <% end %>
+         </td>
+    <% else %>
+         <td><%= link_to customer_path(@customer.id) do %>
+              <%= @item.customer.name %>
+             <% end %>
+         </td>
+    <% end %>
+
     <!--商品詳細-->
-   <th><%= @item.introduction %></th>
+   <td><%= @item.introduction %></td>
 
     <!--ジャンル-->
-   <th><%= @item.genre.name %></th>
+   <td><%= @item.genre.name %></td>
 
    <!--いいねの数-->
-    <th><%= @item.favorites.count %></th>
+    <td>いいね数<%= @item.favorites.count %></td>
   </tr>
 </tbody>
 </table>
@@ -33,22 +46,11 @@
         <span>♡︎</span>
     <% end %>
 <% end %>
-<!--コメント-->
-<!--<h2>投稿する</h2>-->
 
-<!--<#%= form_with model: @item do |f| %>-->
-<!--  <#%= f.text_area :post_content, placeholder: '本文' %>-->
-<!--    <#%= f.submit 'コメントする' %>-->
+<%= link_to '編集する', edit_item_path %>
+<%= link_to "削除する", item_path(@item.id), method: :delete %>
 
-
-<!--<h2>投稿一覧</2>-->
-
-<!--<#% @items.each do |item| %>-->
-<!--  <#%= link_to item.body, item %>-->
-
-<!--<#%= link_to 'ホーム', root_path %>-->
-
-<h2>コメントをする</h2>
+<h4>コメント</h4>
 
 <%= form_with(model:[@item, @comment], method: :post) do |f| %>
   <%= f.text_area :body %>
@@ -56,7 +58,7 @@
   <%= f.submit 'コメントする' %>
 <% end %>
 <% end %>
-<h2>コメント一覧</h2>
+<h4>コメント一覧</h4>
 <tbody>
   <% @comments.each do |comment| %>
    <tr>
@@ -65,7 +67,7 @@
     <!--コメントの内容が表示される-->
     <td><%= comment.body %></td>
     <!--コメント削除-->
-    <td><%= link_to "削除", item_comment_path(item_comment.id), method: :delete %></td>
+    <td><%= link_to "削除", item_comment_path(comment.id), method: :delete %></td>
    </tr>
   <% end %>
 </tbody>

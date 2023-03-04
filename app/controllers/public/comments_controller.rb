@@ -8,6 +8,13 @@ class Public::CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    current_customer.comments.find(params[:id]).destroy!
+    flash[:notice] = 'コメントを削除しました'
+    redirect_to item_path(@item)
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:item_id, :customer_id, :body)  #formにてpost_idパラメータを送信して、コメントへpost_idを格納するようにする必要がある。

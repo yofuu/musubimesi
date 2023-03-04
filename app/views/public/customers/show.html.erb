@@ -1,15 +1,31 @@
 <div class="mx-auto" style="width: 300px;">
-<!--名前-->
-<h4><%= @customer.name %></h4>
-<!--投稿したもの-->
-<%= @customer.item %>
+
+<div class="row">
+  <!--名前-->
+  <h5>会員名</h5>
+  <h4><%= @customer.name %></h4>
+</div>
+
+<div class="row">
+  <!--メールアドレス-->
+  <h5>メールアドレス</h5>
+<%= @customer.email %>
+</div>
+
 <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>いいね数</th>
+    </tr>
+  </thead>
+
   <tbody>
     <% @items.each do |item| %>
       <tr>
         <!--商品画像-->
         <td><%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(20,20) %>
+          <%= image_tag item.get_image(100,100) %>
           <% end %>
         </td>
         <!--商品名-->
@@ -25,6 +41,4 @@
     <% end %>
   </tbody>
 </table>
-<!--メールアドレス-->
-<%= @customer.email %>
 </div>

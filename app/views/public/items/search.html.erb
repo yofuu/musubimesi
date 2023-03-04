@@ -4,7 +4,7 @@
       <li>
         <%= link_to item_path(item.id) do %>
         <% if item.image.attached? %>
-          <%= image_tag item.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") %>
+          <%= image_tag item.image.variant(gravity: :center, resize:"100x100") %>
         <% end %>
         <% end %>
       </li>

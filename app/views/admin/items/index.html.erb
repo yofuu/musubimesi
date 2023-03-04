@@ -14,7 +14,11 @@
         <% end %>
         </td>
         <!--投稿者-->
-        <td><%= item.customer.name %></td>
+        <% if item.customer.present? %>
+          <td><%= item.customer.name %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <!--いいねの数-->
         <td><%= item.favorites.count %></td>
       </tr>

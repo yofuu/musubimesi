@@ -10,7 +10,7 @@ class Item < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/default-image.jpeg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-      image.variant(resize_to_limit: [width,height]).processed
+    image.variant(gravity: :center, resize:"#{width}x#{height}^")
   end
 
   def favorite?(customer)

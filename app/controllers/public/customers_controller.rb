@@ -5,6 +5,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @items = Item.all
   end
 
   def edit
@@ -19,7 +20,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customers_params)
-    redirect_to customer_path(@customer), notice:"Item was successfully updated."
+    redirect_to customers_mypage_path(current_customer), notice:"会員情報を更新しました"
     else
     render:edit
     end

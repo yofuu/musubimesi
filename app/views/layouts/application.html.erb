@@ -80,8 +80,12 @@
       <div class="row">
        <div class="col-lg-10">
         <%= form_with url: search_items_path, local: true, method: :get do |form| %>
-         <%= form.text_field :keyword %>
-         <%= form.submit "検索" %>
+          <%= form.text_field :keyword %>
+          <%= form.submit "検索" %>
+        <% end %>
+        <%= form_with url: search_items_path, local: true, method: :get do |form| %>
+          <%= form.collection_select(:genre_id, Genre.all, :id, :name ) %>
+          <%= form.submit "検索" %>
         <% end %>
        </div>
        <div class="col-lg-2">

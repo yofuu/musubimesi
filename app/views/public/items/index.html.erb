@@ -7,7 +7,7 @@
       <tr>
         <!--商品画像-->
         <td><%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(200,200) %>
+          <%= image_tag item.get_image(150,150) %>
           <% end %>
         </td>
         <!--商品名-->
@@ -16,9 +16,19 @@
          <% end %>
         </td>
         <!--投稿者-->
-        <td><%#= item.customer.name %></td>
+        <% if item.customer.id == current_customer.id %>
+         <td><%= link_to customers_mypage_path do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% else %>
+         <td><%= link_to customer_path(customer.id) do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% end %>
         <!--いいねの数-->
-        <td><%= item.favorites.count %></td>
+        <td>いいね数<%= item.favorites.count %></td>
       </tr>
     <% end %>
   </tbody>

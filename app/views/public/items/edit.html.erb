@@ -1,3 +1,4 @@
+<div class="mx-auto" style="width: 400px;">
 <h4>編集</h4>
 
 <%= form_with model: @item, url:item_path(@item.id), method: :patch do |f| %>
@@ -20,10 +21,11 @@
 
  <tr>
   <td>ジャンル</td>
-  <td><%= f.text_field :gener_name %></td>
+  <td><%= f.collection_select(:genre_id, @genres, :id, :name )  %></td>
  </tr>
 </tbody>
 </table>
 
  <%= f.submit '変更を保存する' %>
 <% end %>
+</div>
