@@ -1,23 +1,35 @@
 <div class="mx-auto" style="width: 400px;">
-<h2>検索結果 "<%= @keyword %>"</h2>
-  <ul>
+<h4>検索結果 "<%= @keyword %>"</h4>
+<table>
+  <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td>
-          <%= link_to item_path(item.id) do %>
-           <% if item.image.attached? %>
-            <%= image_tag item.image.variant(gravity: :center, resize:"100x100") %>
-           <% end %>
+        <!--商品画像-->
+        <td><%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(100,100) %>
           <% end %>
         </td>
-        <td>
-          <%= item.name %>
+        <!--商品名-->
+        <td><%= link_to item_path(item.id) do %>
+         <%= item.name %>
+         <% end %>
         </td>
-        <td>
-          <%= item
-        </td>
-        
+        <!--投稿者-->
+        <% if customer_signed_in? && (item.customer.id == current_customer.id) %>
+         <td><%= link_to customers_mypage_path do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% else %>
+         <td><%= link_to customer_path(item.customer.id) do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% end %>
+        <!--いいねの数-->
+        <td>いいね数<%= item.favorites.count %></td>
       </tr>
     <% end %>
-  </ul>
+  </tbody>
+</table>
 </div>

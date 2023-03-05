@@ -3,6 +3,7 @@
 
 
 <h4>ランキング</h4>
+ <%# @all_ranks.each.with_index(1) do |note, i| %>
     <% @items.each do |item| %>
       <%= link_to item_path(item.id) do %>
       <%= image_tag item.get_image(100,100) %>
@@ -12,5 +13,6 @@
       <%= item.name %>
       <% end %>
     <% end %>
+ <%# end %>
   <%= link_to "全ての商品を見る", items_path %>
 </div>

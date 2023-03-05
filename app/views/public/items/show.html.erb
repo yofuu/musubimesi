@@ -11,7 +11,7 @@
    <th><%= @item.name %></th>
 
    <!--投稿者-->
-    <% if @item.customer.id == current_customer.id %>
+    <% if customer_signed_in? && @item.customer.id == current_customer.id %>
          <td><%= link_to customers_mypage_path do %>
               <%= @item.customer.name %>
              <% end %>

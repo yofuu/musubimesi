@@ -89,7 +89,9 @@
         <% end %>
        </div>
        <div class="col-lg-2">
-        <%= link_to "新規投稿", new_item_path %>
+        <% if customer_signed_in? %>
+         <%= link_to "新規投稿", new_item_path %>
+        <% end %>
        </div>
       </div>
      </div>

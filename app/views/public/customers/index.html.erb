@@ -6,7 +6,7 @@
     <% @customers.each do |customer| %>
       <tr>
         <!--顧客名-->
-        <% if customer.id == current_customer.id %>
+        <% if customer_signed_in? && customer.id == current_customer.id %>
          <td><%= link_to customers_mypage_path do %>
               <%= customer.name %>
              <% end %>

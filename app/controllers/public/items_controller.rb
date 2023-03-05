@@ -28,19 +28,6 @@ class Public::ItemsController < ApplicationController
     @item.customer_id = current_customer.id
     @item.save!
     redirect_to action: 'index'
-
-    # if @item.save
-    #   redirect_to item_path(@item.id), notice:"新規投稿しました"
-    # else
-    #   @items = Item.all
-    #   render :index
-    # end
-
-    # if @item.save
-    #   redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-    # else
-    #   redirect_back(fallback_location: root_path)  #同上
-    # end
   end
 
   def update
