@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 400px;">
+<div class="mx-auto" style="width: 500px;">
 <h4>結びめし詳細</h4>
 
 <table>
@@ -17,7 +17,7 @@
              <% end %>
          </td>
     <% else %>
-         <td><%= link_to customer_path(@customer.id) do %>
+         <td><%= link_to customer_path(@item.customer.id) do %>
               <%= @item.customer.name %>
              <% end %>
          </td>
@@ -47,8 +47,10 @@
     <% end %>
 <% end %>
 
-<%= link_to '編集する', edit_item_path %>
-<%= link_to "削除する", item_path(@item.id), method: :delete %>
+<% if @item.customer == current_customer %>
+  <%= link_to '編集する', edit_item_path %>
+  <%= link_to "削除する", item_path(@item.id), method: :delete %>
+<% end %>
 
 <h4>コメント</h4>
 
@@ -59,6 +61,7 @@
 <% end %>
 <% end %>
 <h4>コメント一覧</h4>
+<table>
 <tbody>
   <% @comments.each do |comment| %>
    <tr>
@@ -67,9 +70,13 @@
     <!--コメントの内容が表示される-->
     <td><%= comment.body %></td>
     <!--コメント削除-->
-    <td><%= link_to "削除", item_comment_path(comment.id), method: :delete %></td>
+    <td><% if comment.customer == current_customer %>
+        <%= link_to "削除", item_comment_path(comment.id), method: :delete %>
+        <% end %>
+    </td>
    </tr>
   <% end %>
 </tbody>
+</table>
 <%= link_to 'ホーム', root_path %>
 </div>

@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @items = Item.all
+    @items = @customer.items
   end
 
   def edit
@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
 
   def mypage
     @customer = current_customer
-    @items = Item.all
+    @items = @customer.items
   end
 
   def update

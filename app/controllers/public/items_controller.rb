@@ -3,12 +3,10 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, only: [:create]
   def index
     @items = Item.all
-    # @customer = Customer.find(params[:id])
   end
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.where(customer_id: current_customer.id)
     @comments = @item.comments  #投稿詳細に関連付けてあるコメントを全取得
     if current_customer.present?
       @comment = current_customer.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得

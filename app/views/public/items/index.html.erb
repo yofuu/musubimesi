@@ -22,7 +22,7 @@
              <% end %>
          </td>
         <% else %>
-         <td><%= link_to customer_path(customer.id) do %>
+         <td><%= link_to customer_path(item.customer.id) do %>
               <%= item.customer.name %>
              <% end %>
          </td>

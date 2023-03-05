@@ -5,7 +5,7 @@
 <tbody>
   <tr>
     <!--画像-->
-   <th><%= image_tag item.get_image(100,100) %></th>
+   <th><%= image_tag @item.get_image(100,100) %></th>
 
     <!--名前-->
    <th><%= @item.name %></th>
@@ -14,23 +14,26 @@
    <th><%= @item.introduction %></th>
 
     <!--ジャンル-->
-   <th><%= @item.gener_id %></th>
+   <th><%= @item.genre_id %></th>
 
    <!--いいねの数-->
     <th><%= @item.favorites.count %></th>
   </tr>
 </tbody>
+
+<%= link_to "削除する", admin_item_path(@item.id), method: :delete %>
+
 </table>
 <!--コメント-->
 <tbody>
-  <% @comments.each do |comment| %>
+  <% @item.comments.each do |comment| %>
    <tr>
     <!--コメントを書いた会員-->
     <td><%= comment.customer.name %></td>
     <!--コメントの内容が表示される-->
     <td><%= comment.body %></td>
     <!--コメント削除-->
-    <td><%= link_to "削除", admin_comment_path(item_comment.id), method: :delete %></td>
+    <td><%= link_to "削除", admin_comment_path(comment.id), method: :delete %></td>
    </tr>
   <% end %>
 </tbody>

@@ -9,9 +9,9 @@ class Admin::ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    current_customer.comments.find(params[:id]).destroy!
-    flash[:notice] = 'コメントを削除しました'
-    redirect_to admin_item_path(@item)
+    @item.destroy
+    flash[:notice] = '投稿を削除しました'
+    redirect_to admin_items_path
   end
 
   private
