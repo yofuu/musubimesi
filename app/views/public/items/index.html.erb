@@ -1,6 +1,6 @@
 <div class="mx-auto" style="width: 300px;">
 <h4>結びめし一覧</h4>
-<h5>
+
 <table>
   <tbody>
     <% @items.each do |item| %>
@@ -33,5 +33,5 @@
     <% end %>
   </tbody>
 </table>
-</h5>
+<%= paginate @items %>
 </div>

@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
   #ユーザーのログイン状態を確かめる。index,showはログインしてなくても閲覧可能にしてます。
   before_action :authenticate_customer!, only: [:create]
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def show

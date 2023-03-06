@@ -1,18 +1,40 @@
 <div class="mx-auto" style="width: 300px;">
-<h2>結びめし</h2>
+<h4>結びめし</h4>
 
-
-<h4>ランキング</h4>
- <%# @all_ranks.each.with_index(1) do |note, i| %>
-    <% @items.each do |item| %>
-      <%= link_to item_path(item.id) do %>
-      <%= image_tag item.get_image(100,100) %>
-      <% end %>
-      <br>
-      <%= link_to item_path(item.id) do %>
-      <%= item.name %>
-      <% end %>
+<table>
+  <tbody>
+   <% @all_ranks.each.with_index(1) do |item, i| %>
+    <%# @all_ranks.each do |item| %>
+      <tr>
+        <!--商品画像-->
+        <td><%= i %></td>
+        <td><%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(150,150) %>
+          <% end %>
+        </td>
+        <!--商品名-->
+        <td><%= link_to item_path(item.id) do %>
+         <%= item.name %>
+         <% end %>
+        </td>
+        <!--投稿者-->
+        <% if customer_signed_in? && (item.customer.id == current_customer.id) %>
+         <td><%= link_to customers_mypage_path do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% else %>
+         <td><%= link_to customer_path(item.customer.id) do %>
+              <%= item.customer.name %>
+             <% end %>
+         </td>
+        <% end %>
+        <!--いいねの数-->
+        <td>いいね数<%= item.favorites.count %></td>
+      </tr>
     <% end %>
- <%# end %>
+  </tbody>
+</table>
+
   <%= link_to "全ての商品を見る", items_path %>
 </div>
