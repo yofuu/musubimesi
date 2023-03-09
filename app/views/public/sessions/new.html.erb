@@ -1,7 +1,7 @@
 <div class="mx-auto" style="width: 400px;">
 
 <h2>ログイン</h2>
-<h4>
+<div style="font-size:x-large">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="my-5">
   <div class="field">
@@ -27,7 +27,6 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
-</h4>
-
+</div>
 登録してない方<%= render "public/shared/links" %>
 </div>

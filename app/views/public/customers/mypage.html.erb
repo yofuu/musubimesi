@@ -1,5 +1,6 @@
-<h4>マイページ</h4>
-
+<div class="mx-auto" style="width: 300px;">
+<h3>マイページ</h3>
+<div style="font-size:x-large">
 <table>
   <tbody>
     <tr>
@@ -34,5 +35,13 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to "会員情報編集", edit_customer_path(current_customer) %>
-<%= link_to "退会画面に進む", customers_unsubscribe_path %>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <%= link_to "会員情報編集", edit_customer_path(current_customer) %>
+  </div>
+  <div class="col-lg-6">
+    <%= link_to "退会画面に進む", customers_unsubscribe_path %>
+  </div>
+</div>
+</div>

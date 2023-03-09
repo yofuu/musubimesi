@@ -36,4 +36,4 @@ https://docs.google.com/spreadsheets/d/1ODONpb__21s0OTIWBT1GM_WiKFNficOVEXzhnFFP
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です。
+- イラストレイン(https://illustrain.com/)
