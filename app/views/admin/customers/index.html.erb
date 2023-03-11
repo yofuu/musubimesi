@@ -1,6 +1,6 @@
 <div class="mx-auto" style="width: 300px;">
 <h4>顧客一覧</h4>
-
+<div style="font-size:x-large">
 <table>
   <tbody>
     <% @customers.each do |customer| %>
@@ -25,5 +25,6 @@
     <% end %>
   </tbody>
 </table>
-<%= paginate @items %>
+</div>
+<%= paginate @customers %>
 </div>

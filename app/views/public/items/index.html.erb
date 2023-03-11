@@ -12,7 +12,9 @@
         </td>
         <!--商品名-->
         <td><%= link_to item_path(item.id) do %>
-         <%= item.name %>
+         <div style="font-size:x-large">
+          <%= item.name %>
+         </div>
          <% end %>
         </td>
         <!--投稿者-->
