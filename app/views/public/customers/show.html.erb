@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" style="width: 500px;">
 
 <div class="row">
   <!--名前-->
@@ -12,12 +12,12 @@
 <%= @customer.email %>
 </div>
 
-<table>
+<table width="500" cellpadding="10">
   <tbody>
     <% @items.each do |item| %>
       <tr>
         <!--商品画像-->
-        <td><%= link_to item_path(item.id) do %>
+        <td width="30%"><%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(100,100) %>
           <% end %>
         </td>
@@ -28,8 +28,6 @@
           </div>
            <% end %>
         </td>
-        <!--投稿者-->
-        <td><%= item.customer.name %></td>
         <!--いいねの数-->
         <td>いいね数<%= item.favorites.count %></td>
       </tr>
