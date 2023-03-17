@@ -1,30 +1,49 @@
-<!--名前-->
-<h4><%= @customer.name %></h4>
-<!--メールアドレス-->
-<%= @customer.email %>
-<!--ステータス-->
-<% if @customer.is_deleted==true %>
-  退会
-<% else %>
-  有効
-<% end %>
+<div class="mx-auto" style="width: 300px;">
 
-<tbody>
+<div class="row">
+  <h5>会員名</h5>
+   <div style="font-size:x-large">
+    <%= @customer.name %>
+  </div>
+</div>
+
+<div class="row">
+  <h5>メールアドレス</h5>
+   <div style="font-size:x-large">
+    <%= @customer.email %>
+   </div>
+</div>
+
+<div class="row">
+  <h5>ステータス</h5>
+  <% if @customer.is_deleted==true %>
+    退会
+  <% else %>
+    有効
+  <% end %>
+</div>
+
+<h5>投稿した結びめし</h5>
+<table width="500" cellpadding="10">
+  <tbody>
     <% @items.each do |item| %>
       <tr>
         <!--商品画像-->
-        <td><%= link_to admin_item_path(item.id) do %>
+        <td width="30%"><%= link_to admin_item_path(item.id) do %>
           <%= image_tag item.get_image(100,100) %>
           <% end %>
         </td>
         <!--商品名-->
         <td><%= link_to admin_item_path(item.id) do %>
-         <%= item.name %>
-         <% end %>
+          <div style="font-size:x-large">
+            <%= item.name %>
+          </div>
+            <% end %>
         </td>
         <!--いいねの数-->
-        <td><%= item.favorites.count %></td>
+        <td>いいね数<%= item.favorites.count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

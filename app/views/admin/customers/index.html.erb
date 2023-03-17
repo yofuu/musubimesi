@@ -1,17 +1,31 @@
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" style="width: 500px;">
 <h4>顧客一覧</h4>
-<div style="font-size:x-large">
-<table>
+
+<table border="1" width="500" cellpadding="10">
+  <thead>
+      <tr>
+          <th>名前</th>
+          <th>メールアドレス</th>
+          <th>登録日時</th>
+          <th>ステータス</th>
+      </tr>
+  </thead>
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
         <!--顧客名-->
         <td><%= link_to admin_customer_path(customer.id) do %>
-        <%= customer.name %>
-        <% end %>
+         <div style="font-size:x-large">
+            <%= customer.name %>
+         </div>
+            <% end %>
         </td>
         <!--メールアドレス-->
-        <td><%= customer.email %></td>
+        <td>
+          <div style="font-size:x-large">
+            <%= customer.email %>
+          </div>
+        </td>
         <!--登録日時-->
         <td><%= customer.created_at %></td>
         <!--ステータス-->

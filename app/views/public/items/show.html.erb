@@ -5,31 +5,48 @@
 <tbody>
   <tr>
     <!--画像-->
-   <th><%= image_tag @item.get_image(200,200) %></th>
+   <td width="50%"><%= image_tag @item.get_image(200,200) %></td>
 
     <!--名前-->
-   <th><%= @item.name %></th>
+   <th width="10%">
+     <div style="font-size:x-large">
+       <%= @item.name %>
+     </div>
+   </th>
 
    <!--投稿者-->
     <% if customer_signed_in? && @item.customer.id == current_customer.id %>
          <td><%= link_to customers_mypage_path do %>
-              <%= @item.customer.name %>
+           <div style="font-size:x-large">
+             <%= @item.customer.name %>
+           </div>
              <% end %>
          </td>
     <% else %>
          <td><%= link_to customer_path(@item.customer.id) do %>
-              <%= @item.customer.name %>
+           <div style="font-size:x-large">
+             <%= @item.customer.name %>
+           </div>
              <% end %>
          </td>
     <% end %>
+  </tr>
 
-
+  <tr>
     <!--商品詳細-->
-   <td><%= @item.introduction %></td>
+   <td>
+      <div style="font-size:x-large">
+          <%= @item.introduction %>
+      </div>
+   </td>
+  </tr>
 
+  <tr>
     <!--ジャンル-->
    <td><%= @item.genre.name %></td>
+  </tr>
 
+  <tr>
    <!--いいねの数-->
     <td>いいね数<%= @item.favorites.count %></td>
   </tr>
