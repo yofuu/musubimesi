@@ -1,11 +1,11 @@
-<div class="mx-auto" style="width: 400px;">
+<div class="mx-auto" style="width: 500px;">
 <h4>検索結果 "<%= @keyword %>"</h4>
-<table>
+<table width="400" cellpadding="10">
   <tbody>
     <% @items.each do |item| %>
       <tr>
         <!--商品画像-->
-        <td><%= link_to item_path(item.id) do %>
+        <td width="30%"><%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(100,100) %>
           <% end %>
         </td>

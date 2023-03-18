@@ -8,7 +8,7 @@
    <td width="50%"><%= image_tag @item.get_image(200,200) %></td>
 
     <!--名前-->
-   <th width="10%">
+   <th width="30%">
      <div style="font-size:x-large">
        <%= @item.name %>
      </div>
@@ -16,14 +16,14 @@
 
    <!--投稿者-->
     <% if customer_signed_in? && @item.customer.id == current_customer.id %>
-         <td><%= link_to customers_mypage_path do %>
+         <td width="15%"><%= link_to customers_mypage_path do %>
            <div style="font-size:x-large">
              <%= @item.customer.name %>
            </div>
              <% end %>
          </td>
     <% else %>
-         <td><%= link_to customer_path(@item.customer.id) do %>
+         <td width="15%"><%= link_to customer_path(@item.customer.id) do %>
            <div style="font-size:x-large">
              <%= @item.customer.name %>
            </div>

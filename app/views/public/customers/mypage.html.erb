@@ -1,22 +1,30 @@
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" style="width: 500px;">
 <h3>マイページ</h3>
-<div style="font-size:x-large">
+
 <table>
   <tbody>
     <tr>
       <td>名前</td>
-      <td><%= @customer.name %></td>
+      <td>
+        <div style="font-size:x-large">
+          <%= @customer.name %>
+        </div>
+      </td>
     </tr>
 
     <tr>
       <td>メールアドレス</td>
-      <td><%= @customer.email %></td>
+      <td>
+        <div style="font-size:x-large">
+          <%= @customer.email %>
+        </div>
+      </td>
     </tr>
 
   </tbody>
 </table>
 
-<table>
+<table width="300" cellpadding="10">
   <tbody>
     <% @items.each do |item| %>
       <tr>
@@ -26,16 +34,18 @@
         </td>
         <!--投稿した名前-->
         <td><%= link_to item_path(item.id) do %>
-        <%= item.name %>
-        <% end %>
+              <div style="font-size:x-large">
+                <%= item.name %>
+              </div>
+            <% end %>
         </td>
         <!--いいねの数-->
-        <td><%= item.favorites.count %></td>
+        <td>いいね数<%= item.favorites.count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
+
 <div class="row">
   <div class="col-lg-6">
     <%= link_to "会員情報編集", edit_customer_path(current_customer) %>
