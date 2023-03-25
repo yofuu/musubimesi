@@ -13,7 +13,7 @@
           <% end %>
         </td>
         <!--商品名-->
-        <td><%= link_to item_path(item.id) do %>
+        <td width="15%"><%= link_to item_path(item.id) do %>
          <div style="font-size:x-large">
           <%= item.name %>
          </div>
@@ -21,18 +21,18 @@
         </td>
         <!--投稿者-->
         <% if customer_signed_in? && (item.customer.id == current_customer.id) %>
-         <td><%= link_to customers_mypage_path do %>
+         <td width="15%"><%= link_to customers_mypage_path do %>
               <%= item.customer.name %>
              <% end %>
          </td>
         <% else %>
-         <td><%= link_to customer_path(item.customer.id) do %>
+         <td width="15%"><%= link_to customer_path(item.customer.id) do %>
               <%= item.customer.name %>
              <% end %>
          </td>
         <% end %>
         <!--いいねの数-->
-        <td>いいね数<%= item.favorites.count %></td>
+        <td>❤️<%= item.favorites.count %></td>
       </tr>
     <% end %>
   </tbody>
