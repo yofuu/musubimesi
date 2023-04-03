@@ -7,6 +7,10 @@
 //   background-size: cover;
 // }
 
+body {
+  background-image: url("../images/hoge.jpg");
+}
+
 .gradient {
 	background:linear-gradient(#78FF94	, #fff);
 // 	height: 700px;
