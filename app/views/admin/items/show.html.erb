@@ -21,7 +21,7 @@
   </tr>
 </tbody>
 
-<%= link_to "投稿を削除する", admin_item_path(@item.id), method: :delete %>
+<%= link_to "投稿を削除する", admin_item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
 </table>
 <!--コメント-->
@@ -33,7 +33,7 @@
     <!--コメントの内容が表示される-->
     <td><%= comment.body %></td>
     <!--コメント削除-->
-    <td><%= link_to "コメントを削除", admin_comment_path(comment.id), method: :delete %></td>
+    <td><%= link_to "コメントを削除", admin_comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
    </tr>
   <% end %>
 </tbody>

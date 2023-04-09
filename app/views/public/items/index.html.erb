@@ -31,6 +31,8 @@
         <% end %>
         <!--いいねの数-->
         <td>❤️<%= item.favorites.count %></td>
+        <!--<投稿日時>-->
+        <td><%= item.created_at %></td>
       </tr>
     <% end %>
   </tbody>
