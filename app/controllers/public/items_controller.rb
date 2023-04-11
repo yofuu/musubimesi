@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   #ユーザーのログイン状態を確かめる。index,showはログインしてなくても閲覧可能にしてます。
-  before_action :authenticate_customer!, only: [:create]
+  before_action :authenticate_customer!, only: [:create, :edit]
+  before_action :correct_item,only: [:edit]
   def index
     @items = Item.all.page(params[:page]).per(10)
   end
@@ -60,6 +61,14 @@ class Public::ItemsController < ApplicationController
   end
 
   private
+
+  def correct_item
+    @item = Item.find(params[:id])
+    unless @item.customer.id == current_customer.id
+      redirect_to root_path  #直打ちした時リダイレクトするパスを指定
+    end
+  end
+
   def items_params
     params.require(:item).permit(:image, :name, :introduction, :is_active, :genre_id)
   end
