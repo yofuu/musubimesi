@@ -8,11 +8,11 @@ class Admin::GenresController < ApplicationController
      @genre = Genre.new(genres_params)
     # @genre.customer_id = current_customer.id
 
-    if @genre.save!
+    if @genre.save
       redirect_to admin_items_path, notice:"新しいジャンルを追加しました"
     else
       @genres = Genre.all
-      render :index
+      render :new
     end
   end
 

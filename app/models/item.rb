@@ -16,4 +16,7 @@ class Item < ApplicationRecord
   def favorite?(customer)
    favorites.where(customer_id: customer.id).exists?
   end
+  
+  validates :name, presence: true, length: { minimum: 1}  # 最小
+  validates :introduction, presence: true, length: { minimum: 1}  # 最小
 end
